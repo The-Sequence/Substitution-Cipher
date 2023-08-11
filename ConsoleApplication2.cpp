@@ -97,9 +97,11 @@ int main() {
 				cout << " - Show encryption key -" << endl << endl;
 				cout << "The encryption key is: " << endl;
 				cout << "' " << key << " '" << endl << endl;
-				cout << "Changing the encryption key is recommended" << endl << endl
-					<< "every app usage to avoid others from deciphering" << endl << endl
-					<< "your previous messages, etc";
+				cout << "Changing the encryption key is recommended every" << endl
+					<< "app usage to avoid others from deciphering your" << endl
+					<< "previous messages. " << endl <<endl
+					<<"You can generate one from the app." << endl << endl;
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
 				break;
 			}
