@@ -1,165 +1,135 @@
 #include <iostream>
-#include <string>
 #include <iomanip>
+#include <string>
 
 using namespace std;
 
-void clearConsole() {
-    std::cout << "\033[2J\033[1;1H"; // ANSI escape codes to clear the screen
-}
-
 int main() {
-    string abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    string key = "xjqnmhklcbydogfretiupaswvzXJQNMHKLCBYDOGFRETIUPASWVZ";
-    string s1{};
-    string locked{};
-    string unlocked{};
-    char choice{};
-    bool actionDone{};
-    
-    do {
-            cout << " ---------------------------------" << endl;
-            cout << "              Welcome" << endl;
-            cout << " ---------------------------------" << endl;
-            cout << " 1. Encode a message" << endl;
-            cout << " 2. Decode a message" << endl;
-            cout << " 3. View current cipher key" << endl;
-            cout << " 4. Generate a new cipher key" << endl;
-            cout << " 5. Change the cipher key" << endl;
-            cout << " 6. Quit" << endl;
-            cout << "\n Enter your selection: ";
+	string abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	string key = "xjqnmhklcbydogfretiupaswvzXJQNMHKLCBYDOGFRETIUPASWVZ";
+	string s1{};
+	string s1_locked{};
+	string s1_unlocked{};
+	int choice{};
 
-            cin >> choice;
-            cin.ignore(); // Clear the input buffer including the newline character.
+	do {
+		system("cls");
+		cout << "- - - - - - - - - - - - - - -" << endl;
+		cout << "1 - Encrypt text" << endl;
+		cout << "2 - Decrypt text" << endl;
+		cout << "3 - Show encryption key" << endl;
+		cout << "4 - Generate new encryption key" << endl;
+		cout << "5 - Change current encryption key" << endl;
+		cout << "6 - Quit" << endl;
+		cout << "\nEnter your selection: ";
+		cin >> choice;
+		cin.clear();
+		cin.ignore();
 
-        //Implement the switch statement here...
+		if (cin.fail()) {
+			cin.clear();
+			cin.ignore();
+			system("cls");
+			cout << "Invalid choice, please try again." << endl;
+		}
+		else {
+			switch (choice) {
 
-            switch (choice) {
+			case 1: {
+				system("cls");
+				cout << "- - - - - - - - - - - - - - -" << endl;
+				cout << " - Encrypt message - " << endl << endl;
+				cout << "Enter the message to be encrypted: ";
+				getline(cin, s1);
+				system("cls");
 
-            case '1': {
-                clearConsole();
-                cout << "     - Encode a message -" << endl;
-                cout << "---------------------------------" << endl;
-                cout << "\nEnter your message: ";
-                getline(cin, s1);
+				for (char c : s1) {
+					size_t position{ abc.find(c) };
+					if (position != string::npos) {
+						char new_char{ key.at(position) };
+						s1_locked += new_char;
+					}
+					else {
+						s1_locked += c;
+					}
+				}
 
-                for (auto c : s1) {
-                    size_t position{ abc.find(c) };
-                    if (position != string::npos) {
-                        char new_char{ key.at(position) };
-                        locked += new_char;
-                    }
-                    else {
-                        locked += c;
-                    }
-                }
-                clearConsole();
-                cout << "--------------------------------------------------------------------" << endl;
-                cout.width(43);
-                cout << "- Encrypted message -";
-                cout << "" << endl;
-                cout.width(56);
-                cout << "--------------------------------------------------------------------" << endl;
-                cout << "\n' " << locked << " '" << endl;
-                cout.width(56);
-                cout << "\n--------------------------------------------------------------------" << endl;
-                cout << "\nDon't forget to copy this text if you want to"
-                    << "\nsend it to your friend or if you want to decrypt it!" << endl;
-                break;
-            }
-            case '2':
-                clearConsole();
-                cout << "     - Decode a message -" << endl;
-                cout << "---------------------------------" << endl;
-                cout << "\nEnter the encrypted message: ";
-                getline(cin, s1);
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << "The encrypted message is: " << endl << endl
+					<< s1_locked << endl << endl;
+				cout << "\nDon't forget to copy the message." << endl;
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
-                for (auto c : s1) {
-                    size_t position{ key.find(c) };
-                    if (position != string::npos) {
-                        char new_char{ abc.at(position) };
-                        unlocked += new_char;
-                    }
-                    else {
-                        unlocked += c;
-                    }
-                }
-                clearConsole();
-                cout.width(56);
-                cout << "--------------------------------------------------------------------" << endl;
+				break;
+			}
+			case 2: {
+				system("cls");
+				cout << "- - - - - - - - - - - - - - -" << endl;
+				cout << " - Decrypt message - " << endl << endl;
+				cout << "Enter the message to be decrypted: ";
+				getline(cin, s1);
+				system("cls");
 
-                cout.width(43);
-                cout << "- Decoded message -";
-                cout << "" << endl;
-                cout.width(56);
-                cout << "--------------------------------------------------------------------" << endl;
-                cout<<"\n'" << unlocked << "'" << endl;
-                cout.width(56);
-                cout << "\n--------------------------------------------------------------------" << endl;
-                cout << "\nAwesome!"
-                    << "\nSend another message back by Pressing Any Key"
-                    << "\nand Pressing 1 on the menu!" << endl;
-                break;
+				for (char c : s1) {
+					size_t position{ key.find(c) };
+					if (position != string::npos) {
+						char new_char{ abc.at(position) };
+						s1_unlocked += new_char;
+					}
+					else {
+						s1_unlocked += c;
+					}
+				}
 
-            case '3':
-                clearConsole();
-                cout.width(56);
-                cout << "------------------------------------------------------------------------------" << endl << endl;
-                cout.width(46);
-                cout << "- Cipher Key -";
-                cout << "" << endl;
-                cout.width(13);
-                cout << "' " << key << " '" << endl << endl << endl;
-                cout.width(50);
-                cout << "About the Cipher Key:" << endl << endl;
-                cout.width(10);
-                cout <<"" << "Share this text if you want to communicate with your friend!" << endl;
-                cout.width(4);
-                cout << "" << "If you lose this key, you wouldn't be able to encrypt and decipher text!" << endl;
-                cout.width(55);
-                cout << "\n------------------------------------------------------------------------------" << endl;
-                cout << "\nIf you want to change this key, Press Any Key,"
-                    << "\nenter number 5 in the menu and hit enter!" << endl;
-                break;
-            case '4':
-                clearConsole();
-                cout << "------------------------------------------------------------------------------" << endl;
-                cout << "You have selected: 'Generate new cipher key' " << endl;
-                cout << "Oops, the feature is yet to be worked on!" <<endl
-                     << "\nOptions 1 to 3 are available as of now, please check it out!" <<endl
-                     << "\nPress any key to go back to the menu!" << endl;
-                cout << "------------------------------------------------------------------------------" << endl << endl;
-                break;
-            
-            case '5':
-                clearConsole();
-                cout << "------------------------------------------------------------------------------" << endl;
-                cout << "You have selected: 'Change the cipher key' " << endl;
-                cout << "Oops, the feature is yet to be worked on!" << endl
-                    << "\nFor the mean time, options 1 to 3 are available. Please check them out!" << endl
-                    << "\nPress any key to go back to the menu!" << endl;
-                cout << "------------------------------------------------------------------------------" << endl << endl;
-                break;
-            case '6':
-                clearConsole();
-                cout << "Bye-bye!" << endl;
-                system("pause");
-                return 0;
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << "The decrypted message is: " << endl << endl
+					<< s1_unlocked << endl << endl;
+				cout << "\nTry sending a message to the sender, too!" << endl;
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
-            default:
-                clearConsole(); // Clear the screen
-                cout << "Invalid selection" << endl;
-                break;
-            }
+				break;
+			}
+			case 3: {
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << " - Show encryption key -" << endl << endl;
+				cout << "The encryption key is: " << endl;
+				cout << "' " << key << " '" << endl << endl;
+				cout << "Changing the encryption key is recommended" << endl << endl
+					<< "every app usage to avoid others from deciphering" << endl << endl
+					<< "your previous messages, etc";
 
-            s1.clear();
-            unlocked.clear();
-            locked.clear();
+				break;
+			}
+			case 6: {
+				system("cls");
+				cout << "Goodbye!" << endl;
+				break;
+			}
+			default:
+				cin.clear();
+				system("cls");
+				cout << "Hello from default case" << endl;
+				break;
 
-        cout << endl;
-        system("pause"); // Pause the program so that the user can read what we just printed to the screen
-        clearConsole();
+			}
+		}
+		do {
+			system("pause");
+			break;
+		} while (choice != 6);
 
-    } while (choice != '6');
+		s1.clear();
+		s1_locked.clear();
+		s1_unlocked.clear();
 
+	} while (choice != 6);
+
+	s1.clear();
+	s1_locked.clear();
+	s1_unlocked.clear();
+
+	return 0;
 }
