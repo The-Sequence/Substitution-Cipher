@@ -105,6 +105,16 @@ int main() {
 
 				break;
 			}
+			case 4: {
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << " - Generate a new encryption key -" << endl << endl;
+				cout << "Hello from case 4 logic!" << endl;
+				
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+				break;
+			}
 			case 6: {
 				system("cls");
 				cout << "Goodbye!" << endl;
