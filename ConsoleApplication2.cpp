@@ -1,6 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <ctime>
+#include <random>
 
 using namespace std;
 
@@ -10,6 +12,7 @@ int main() {
 	string s1{};
 	string s1_locked{};
 	string s1_unlocked{};
+	string newKey{};
 	int choice{};
 
 	do {
@@ -97,9 +100,36 @@ int main() {
 				cout << " - Show encryption key -" << endl << endl;
 				cout << "The encryption key is: " << endl;
 				cout << "' " << key << " '" << endl << endl;
+
 				cout << "Changing the encryption key is recommended" << endl << endl
 					<< "every app usage to avoid others from deciphering" << endl << endl
 					<< "your previous messages, etc";
+
+				cout << "Changing the encryption key is recommended every" << endl
+					<< "app usage to avoid others from deciphering your" << endl
+					<< "previous messages. " << endl << endl
+					<< "You can generate one from the app." << endl << endl;
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+				break;
+			}
+			case 4: {
+				static const char base[] = { "abcdefghijklmnopqrstuvwxyz"
+										   "ABCDEFGHIJKLMNOPQRSTUVWXYZ" };
+				int base_length = sizeof(base) - 1;
+				srand(time(0));
+				int key_length{ 52 };
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << " - Generate a new encryption key -" << endl << endl;
+				cout << "New key: " << endl;
+
+				for (size_t m{}; m < key_length; m++) {
+					char test = base[rand() % base_length];
+					cout << test;
+				}
+				cout << "\n\nDon't forget to copy this key.";
+				cout << "\n- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
 				break;
 			}
