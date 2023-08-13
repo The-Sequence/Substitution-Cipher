@@ -114,13 +114,17 @@ int main() {
 				cout << "' " << key << " '" << endl << endl;
 				cout << "Changing the encryption key is recommended every" << endl
 					<< "app usage to avoid others from deciphering your" << endl
+
 					<< "previous messages. " << endl << endl
 					<< "You can generate one from the app." << endl << endl;
+					<< "previous messages. " << endl <<endl
+					<<"You can generate one from the app." << endl << endl;
 				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
 				break;
 			}
 			case 4: {
+
 				static const char base[] = { "abcdefghijklmnopqrstuvwxyz"
 										   "ABCDEFGHIJKLMNOPQRSTUVWXYZ" };
 				srand(time(0));
@@ -136,6 +140,13 @@ int main() {
 				}
 				cout << "\n\nDon't forget to copy this key.";
 				cout << "\n- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+
+				system("cls");
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << " - Generate a new encryption key -" << endl << endl;
+				cout << "Hello from case 4 logic!" << endl;
+				
+				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
 				break;
 			}
