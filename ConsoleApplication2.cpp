@@ -115,7 +115,9 @@ int main() {
 				cout << "Changing the encryption key is recommended every" << endl
 					<< "app usage to avoid others from deciphering your" << endl
 					<< "previous messages. " << endl << endl
-					<< "You can generate one from the app." << endl << endl;
+					<< "You can generate one from the app." << endl << endl
+					<< "previous messages. " << endl << endl
+					<<"You can generate one from the app." << endl << endl;
 				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
 
 				break;
