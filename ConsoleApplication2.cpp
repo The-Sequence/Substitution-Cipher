@@ -121,6 +121,7 @@ int main() {
 				break;
 			}
 			case 4: {
+				string confirm{};
 				static const char base[] = { "abcdefghijklmnopqrstuvwxyz"
 										   "ABCDEFGHIJKLMNOPQRSTUVWXYZ" };
 				srand(time(0));
@@ -132,10 +133,28 @@ int main() {
 
 				for (size_t m{}; m < key_length; m++) {
 					char test = base[rand() % key_length];
+					newKey += test;
 					cout << test;
 				}
 				cout << "\n\nDon't forget to copy this key.";
 				cout << "\n- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+				cout << "\nSet this as the default key for this current session?"
+					<< "\n(Y / N): ";
+				getline(cin, confirm);
+
+				if (confirm == "y" || confirm == "Y") {
+					cin.clear();
+					system("cls");
+					cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+					cout << " - Generate a new encryption key -" << endl << endl;
+					cout << "Key has been set." << endl;
+					key = newKey;
+					break;
+				}
+				else {
+					cin.clear();
+					break;
+				}
 
 				break;
 			}
@@ -146,6 +165,7 @@ int main() {
 				cout << " - Change current encryption key -" << endl << endl;
 				cout << "\nEnter your new encryption key here: ";
 				getline(cin, user_key);
+
 				
 				do {
 					if (user_key.length() == 0) {
@@ -155,10 +175,16 @@ int main() {
 						cout << " - Change current encryption key -" << endl;
 						cout << "\nYou returned a blank space.";
 						cout << "\n\nYou can use the default key by typing 'quit'"
-							 << "\nor proceed entering a valid key.";
+							<< "\nor proceed entering a valid key.";
 
 						cout << "\n\nPlease enter a valid encryption key: ";
 						getline(cin, user_key);
+
+						if (user_key == "quit") {
+							cout << "\nReturning to the menu...";
+							cin.clear();
+							break;
+						}
 					}
 					else if (user_key.length() < 52 || user_key.length() > 52) {
 						cin.clear();
@@ -168,28 +194,27 @@ int main() {
 						cout << "\nThe key you entered is invalid.";
 						cout << "\n\nYou can generate one here in the app, or";
 						cout << "\nYou can type 'quit' to go back to the menu and use"
-							 << "\nthe default key to encrypt your messages.";
+							<< "\nthe default key to encrypt your messages.";
 
 						cout << "\n\nPlease enter a valid encryption key: ";
 						getline(cin, user_key);
-
-						if (user_key == "quit") {
-							cout << "\nYou pressed q, quitting...";
-							break;
-						}
-					
-
 					}
-				} while (user_key.length() != 52);
 
-				if (user_key.length() == 52) {
-					cout << "\nThis is a valid key"
-						 <<"thanks!";
-					system("pause");
-				}
+					if (user_key == "quit") {
+						cout << "\nYou pressed q, quitting...";
+						break;
+					}
+					else if (user_key.length() == 52 && user_key != "quit") {
+						system("cls");
+						cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
+						cout << " - Change current encryption key -" << endl << endl;
+						key = user_key;
+						cout << "New key has been set!";
+						break;
+					}
+
+				} while (user_key.length() != 52 || user_key != "quit");
 				break;
-
-
 			}
 			case 6: {
 				system("cls");
