@@ -109,7 +109,7 @@ int main() {
 			case 3: {
 				system("cls");
 				cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << endl;
-				cout << " - Show encryption key -" << endl << endl;
+				cout << " - View encryption key -" << endl << endl;
 				cout << "The encryption key is: " << endl;
 				cout << "' " << key << " '" << endl << endl;
 				cout << "Changing the encryption key is recommended once every" << endl
@@ -128,7 +128,7 @@ int main() {
 				cout << " - Generate a new encryption key -" << endl << endl;
 				cout << "New key: " << endl;
 
-				string shuffledKey{ key };
+				string shuffledKey{ default_key };
 				
 				for (int i = key.length() - 1; i > 0; i--) {
 					int j = rand() % (i + 1);
@@ -204,7 +204,7 @@ int main() {
 					}
 
 					if (user_key == "quit") {
-						cout << "\nYou pressed q, quitting...";
+						cout << "\nReturning to the menu...";
 						break;
 					}
 					else if (user_key.length() == 52 && user_key != "quit") {
