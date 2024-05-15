@@ -7,15 +7,28 @@
 
 //Global for now until I find a better way for their values to be changed at any time...
 
-static const std::string abc = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-static const std::string default_key = "xjqnmhklcbydogfretiupaswvzXJQNMHKLCBYDOGFRETIUPASWVZ";
-std::string current_key = "xjqnmhklcbydogfretiupaswvzXJQNMHKLCBYDOGFRETIUPASWVZ";
+	static const std::string abc			{ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" };
+	static const std::string default_key	{ "xjqnmhklcbydogfretiupaswvzXJQNMHKLCBYDOGFRETIUPASWVZ"};
+	std::string current_key					{ default_key };
 
 
-static std::string date_time() {
-	time_t now = time(0);
-	char* date_time = ctime(&now);
+	static std::string date_time() {
+	time_t now								{ time(0) };
+	char* date_time							{ ctime(&now) };
 	return date_time;
+}
+
+//Key generator logic
+std::string keyGenerator(std::string current_key) {
+	std::string shuffledKey{ current_key };
+
+	for (int i = current_key.length() - 1; i > 0; i--) {
+		int j = rand() % (i + 1);
+		std::swap(shuffledKey[i], shuffledKey[j]);
+
+		current_key = shuffledKey;
+	}
+	return shuffledKey;
 }
 
 //Generates a text file and stores the following...
@@ -28,7 +41,8 @@ static void saveChatHistory(std::string current_key, std::string encryptedString
 				<< "\n- - - - - - - - - -" << std::endl;
 }
 
-std::string encrypt(std::string userString) { // Menu option 1
+// Menu option 1
+std::string encrypt(std::string userString) { 
 
 	std::string encryptedString{};
 
@@ -50,7 +64,8 @@ std::string encrypt(std::string userString) { // Menu option 1
 	return encryptedString;
 }
 
-std::string decrypt(std::string userString) { //Menu option 2
+//Menu option 2
+std::string decrypt(std::string userString) { 
 
 	std::string decryptedString{};
 
@@ -73,34 +88,27 @@ std::string decrypt(std::string userString) { //Menu option 2
 	return decryptedString;
 }
 
-void displayKey() { //Menu option 3
+//Menu option 3
+void displayKey() { 
 	std::cout << "\nThe current key is: " << std::string_view(current_key) << std::endl;
 }
 
-
-
-void generateNewKey() { // Menu option 4
-	std::string shuffledKey{ default_key };
-	char confirmChange{};
+// Menu option 4
+void generateNewKey() { 
 
 	system("cls");
+	
+	//Generates a new key via keyGenerator (takes the current_key and generates a new key out of it)
+	std::string newKey{ keyGenerator(current_key) };
+
 	std::cout << "- - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
 	std::cout << "New key: " << std::endl;
-
-	// IDEA: Make an independent generateNewKey function that handles the actual generation of a new key
-	// then use changeKey function (taking output from generateNewKey) to replace the current_key.
-
-	for (int i = current_key.length() - 1; i > 0; i--) {
-		int j = rand() % (i + 1);
-		std::swap(shuffledKey[i], shuffledKey[j]);
-
-		current_key = shuffledKey;
-	}
-
+	current_key = newKey;
 	std::cout << current_key;
-
 	std::cout << "\n\nDon't forget to copy this key.";
 	std::cout << "\n- - - - - - - - - - - - - - - - - - - - - - - - -" << std::endl;
+
+	char confirmChange{};
 
 	//while (true) can be "exited" by using return.
 	while (true) {
@@ -113,12 +121,12 @@ void generateNewKey() { // Menu option 4
 			std::cout << "\n- - - - - - - - - - - - - - - - - - - - - - - - -\n";
 			std::cout << "\n - Key has been set. - \n";
 			current_key.clear();
-			current_key = shuffledKey;
+			current_key = newKey;
 			return;
 		}
 		else if (confirmChange == 'n' || confirmChange == 'N') {
 			clearInput();
-			shuffledKey.clear();
+			newKey.clear();
 			std::cout << "Encryption key unchanged.\n";
 			return;
 		}
@@ -133,3 +141,8 @@ void generateNewKey() { // Menu option 4
 	}
 }
 
+//Menu option 5
+void changeCurrentKey() {
+	current_key =  validateKey();
+	std::cout << "New encryption key from user now in use.\n";
+}

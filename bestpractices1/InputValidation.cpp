@@ -32,3 +32,21 @@ std::string getStringInput() {
 	
 }
 
+std::string validateKey() {
+	clearInput();
+	std::cout << "\nPlease enter your encryption key: ";
+	std::string userKey{};
+	std::getline(std::cin, userKey);
+
+	
+	while (userKey.length() > 52 || userKey.length() < 52) {
+		std::cout << "\nInvalid encryption key, please try again. \n";
+		std::getline(std::cin, userKey);
+
+		//REMEMBER TO DO GETLINE AFTER AN INVALID INPUT!
+		//No need to clear input stream!
+	}
+
+	return userKey;
+}
+

@@ -35,8 +35,16 @@ int main() {
 			generateNewKey();
 			break;
 		case 5:
-		
+			changeCurrentKey();
+			break;
+		case 6:
+			std::cout << "\nExiting...\n";
+			system("pause");
 			break;
 		}
+
+		break;
 	}
+
+	return 0;
 }
