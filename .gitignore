@@ -361,3 +361,50 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+###############################################################################
+# CMake Build Directories
+###############################################################################
+/build/
+/cmake-build-debug/
+/cmake-build-release/
+/cmake-build-minsizerel/
+/cmake-build-relwithdebinfo/
+
+###############################################################################
+# IDEs
+###############################################################################
+# CLion
+.idea/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+
+# Qt Creator
+CMakeLists.txt.user
+
+###############################################################################
+# Compiled Executables
+###############################################################################
+# macOS/Linux
+SubstitutionCipher
+
+# Windows
+*.exe
+*.dll
+*.lib
+*.a
+
+###############################################################################
+# OS-Specific Files
+###############################################################################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
