@@ -103,6 +103,7 @@ Substitution-Cipher/
 | [BUILD.md](docs/guides/BUILD.md) | Comprehensive build instructions for all platforms |
 | [WINDOWS_BUILD_GUIDE.md](docs/guides/WINDOWS_BUILD_GUIDE.md) | Windows-specific setup guide |
 | [WINDOWS_QUICK_REFERENCE.md](docs/guides/WINDOWS_QUICK_REFERENCE.md) | Quick reference for Windows developers |
+| [RESTRUCTURING_SUMMARY.md](docs/RESTRUCTURING_SUMMARY.md) | Recent project restructuring and organization changes |
 
 ## 🤝 Contributing
 

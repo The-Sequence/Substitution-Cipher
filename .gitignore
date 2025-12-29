@@ -389,6 +389,18 @@ FodyWeavers.xsd
 CMakeLists.txt.user
 
 ###############################################################################
+# CMake Build Artifacts
+###############################################################################
+cmake-build-debug/
+cmake-build-release/
+cmake-build-*/
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+###############################################################################
 # Compiled Executables
 ###############################################################################
 # macOS/Linux
