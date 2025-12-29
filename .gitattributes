@@ -4,6 +4,39 @@
 * text=auto
 
 ###############################################################################
+# C/C++ source files - always use LF endings (cross-platform compatibility)
+###############################################################################
+*.cpp       text eol=lf
+*.h         text eol=lf
+*.c         text eol=lf
+*.hpp       text eol=lf
+*.cc        text eol=lf
+
+###############################################################################
+# CMake and build files - use LF endings
+###############################################################################
+CMakeLists.txt  text eol=lf
+*.cmake         text eol=lf
+Makefile        text eol=lf
+
+###############################################################################
+# Documentation and configuration - use LF endings
+###############################################################################
+*.md            text eol=lf
+*.txt           text eol=lf
+.gitignore      text eol=lf
+.gitattributes  text eol=lf
+.editorconfig   text eol=lf
+
+###############################################################################
+# Visual Studio project files - use CRLF (Windows native)
+###############################################################################
+*.sln           text eol=crlf
+*.vcxproj       text eol=crlf
+*.vcxproj.filters text eol=crlf
+*.sln.docstates text eol=crlf
+
+###############################################################################
 # Set default behavior for command prompt diff.
 #
 # This is need for earlier builds of msysgit that does not have it on by
